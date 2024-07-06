@@ -52,7 +52,8 @@
         "os",
         "process",
         "shell",
-        "updater"
+        "updater",
+        "sentry"
       ]
     },
     "api-example-js": {
@@ -74,7 +75,8 @@
         "os-js",
         "process-js",
         "shell-js",
-        "updater-js"
+        "updater-js",
+        "sentry-js"
       ],
       "postversion": "pnpm install --no-frozen-lockfile"
     },
@@ -319,6 +321,14 @@
     },
     "window-state-js": {
       "path": "./plugins/window-state",
+      "manager": "javascript"
+    },
+    "sentry": {
+      "path": "./plugins/sentry",
+      "manager": "rust"
+    },
+    "sentry-js": {
+      "path": "./plugins/sentry",
       "manager": "javascript"
     }
   }
