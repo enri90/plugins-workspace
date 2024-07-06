@@ -1,22 +1,22 @@
 [package]
-description = "An experimental Tauri Plugin for Sentry"
-edition = "2021"
-license = "MIT OR Apache-2.0"
 name = "tauri-plugin-sentry"
-readme = "README.md"
-repository = "https://github.com/timfish/sentry-tauri"
-version = "0.3.0"
+version = "2.0.0-beta"
+description = "Tauri Plugin for Sentry error tracking"
+edition = { workspace = true }
+authors = { workspace = true }
+license = { workspace = true }
+rust-version = { workspace = true }
+repository = { workspace = true }
 links = "tauri-plugin-sentry"
-exclude = ["/examples", "/node_modules", "/target"]
 
 [build-dependencies]
-tauri-plugin = { version = "2.0.0-beta.18", features = ["build"] }
+tauri-plugin = { workspace = true, features = ["build"] }
 
 [dependencies]
+serde = { workspace = true }
+tauri = { workspace = true }
+thiserror = { workspace = true }
+schemars = { workspace = true }
 base64 = "0.22"
 sentry = "0.32"
 sentry-rust-minidump = "0.7"
-serde = "1"
-tauri = "2.0.0-beta.23"
-thiserror = "1"
-schemars = "0.8"

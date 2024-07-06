@@ -1,4 +1,4 @@
-# `sentry-tauri`
+![plugin-upload](https://github.com/tauri-apps/plugins-workspace/raw/v2/plugins/upload/banner.png)
 
 A Tauri Plugin for improved Sentry support.
 
@@ -23,8 +23,11 @@ Add the required dependencies in `Cargo.toml`:
 
 ```toml
 [dependencies]
-tauri-plugin-sentry = { git = "https://github.com/timfish/sentry-tauri", branch = "v2" }
+tauri-plugin-sentry = "2.0.0-beta"
+# alternatively with Git:
+tauri-plugin-sentry = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v2" }
 ```
+
 `sentry` and `sentry-rust-minidump` are re-exported by `sentry-tauri` so you
 don't need to add them as dependencies.
 
@@ -51,29 +54,43 @@ however, make sure that you have `sentry:default` in your capabilities:
 }
 ```
 
-Also make sure that you are using the `sentry` as the example below. keep in mind that it's just an example and you are free to use the `sentry` package (that is just re-exported from this package) anyway you want.
+## Usage
+First you need to register the core plugin with Tauri:
+
+`src-tauri/src/main.rs`
 
 ```rust
-// src/lib.rs
+fn main() {
+    let dsn = std::env::var("SENTRY_DSN").unwrap_or_else(|_| String::new());
 
-pub fn run() {
     let client = tauri_plugin_sentry::sentry::init((
-        "__YOUR_DSN__",
-        tauri_plugin_sentry::sentry::ClientOptions {
-            release: tauri_plugin_sentry::sentry::release_name!(),
-            ..Default::default()
-        },
+      dsn.clone(),
+      tauri_plugin_sentry::sentry::ClientOptions {
+        debug: true,
+        release: tauri_plugin_sentry::sentry::release_name!(),
+        ..Default::default()
+      },
     ));
-
-    // Everything before here runs in both app and crash reporter processes
     let _guard = tauri_plugin_sentry::minidump::init(&client);
-    // Everything after here runs in only the app process
 
     tauri::Builder::default()
-        .plugin(tauri_plugin_sentry::init())
+        .plugin(tauri_plugin_upload::init())
         .run(tauri::generate_context!())
-        .expect("error while running tauri app");
+        .expect("error while running tauri application");
 }
+```
+
+Afterwards all the plugin's APIs are available through the JavaScript guest bindings:
+
+```javascript
+
+    window.Sentry.captureException("error execution", {
+      tags: {
+        post: 'error',
+      },
+      extra: { 'test' },
+    });
+
 ```
 
 ## The Plugin
@@ -83,18 +100,6 @@ pub fn run() {
   them to the Rust SDK via the Tauri `invoke` API
 - Tauri + `serde` + existing Sentry Rust types = Deserialisation mostly Just Works™️
 
-## Example App
+## Contributing
 
-Clone this repository and install dependencies:
-
-```shell
-> yarn install
-```
-
-In `examples/basic-app/src-tauri/src/main.rs` replace the DSN with your DSN
-
-Run in development mode:
-
-```shell
-> yarn example
-```
+PRs accepted. Please make sure to read the Contributing Guide before making a pull request.
