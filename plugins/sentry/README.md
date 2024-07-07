@@ -1,5 +1,3 @@
-![plugin-upload](https://github.com/tauri-apps/plugins-workspace/raw/v2/plugins/upload/banner.png)
-
 A Tauri Plugin for improved Sentry support.
 
 It's perfectly reasonable to use Sentry's Rust and browser SDKs separately in a
@@ -25,7 +23,20 @@ Add the required dependencies in `Cargo.toml`:
 [dependencies]
 tauri-plugin-sentry = "2.0.0-beta"
 # alternatively with Git:
-tauri-plugin-sentry = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v2" }
+tauri-plugin-sentry = { git = "https://github.com/enri90/plugins-workspace", branch = "pr_sentry_plugin" }
+```
+
+You can install the JavaScript Guest bindings using your preferred JavaScript package manager:
+
+> Note: Since most JavaScript package managers are unable to install packages from git monorepos we provide read-only mirrors of each plugin. This makes installation option 2 more ergonomic to use.
+
+```sh
+# alternatively with Git:
+pnpm add https://github.com/enri90/tauri-plugin-sentry#pr_sentry_plugin
+# or
+npm add https://github.com/enri90/tauri-plugin-sentry#pr_sentry_plugin
+# or
+yarn add https://github.com/enri90/tauri-plugin-sentry#pr_sentry_plugin
 ```
 
 `sentry` and `sentry-rust-minidump` are re-exported by `sentry-tauri` so you
@@ -90,6 +101,9 @@ Afterwards all the plugin's APIs are available through the JavaScript guest bind
       },
       extra: { 'test' },
     });
+
+
+    window.Sentry.captureMessage("errorMessage", 'error');
 
 ```
 

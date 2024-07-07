@@ -258,6 +258,22 @@ importers:
         specifier: 2.0.0-beta.14
         version: 2.0.0-beta.14
 
+  plugins/sentry:
+    dependencies:
+      '@sentry/browser':
+        specifier: ^8.15.0
+        version: 8.15.0
+      '@tauri-apps/api':
+        specifier: 2.0.0-beta.14
+        version: 2.0.0-beta.14
+      tslib:
+        specifier: ^2.6.3
+        version: 2.6.3
+    devDependencies:
+      '@sentry/types':
+        specifier: ^8.15.0
+        version: 8.15.0
+
   plugins/shell:
     dependencies:
       '@tauri-apps/api':
@@ -900,6 +916,38 @@ packages:
     resolution: {integrity: sha512-UOo5FdvOL0+eIVTgS4tIdbW+TtnBLWg1YBCcU2KWM7nuNwRz9bksDX1bekJJCpu25N1DVWaCwnT39dVQxzqS8g==}
     cpu: [x64]
     os: [win32]
+
+  '@sentry-internal/browser-utils@8.15.0':
+    resolution: {integrity: sha512-DquySUQRnmMyRbfHH9t/JDwPMsVaCOCzV/6XmMb7s4FDYTWSCSpumJEYfiyJCuI9NeebPHZWF7LZCHH4glSAJQ==}
+    engines: {node: '>=14.18'}
+
+  '@sentry-internal/feedback@8.15.0':
+    resolution: {integrity: sha512-W6XiLpw7fL1A0KaHxIH45nbC2M8uagrMoBnMZ1NcqE4AoSe7VtoDqPsLvQ7MgMXwsBYiPu2AItRnKoGFS/dUBA==}
+    engines: {node: '>=14.18'}
+
+  '@sentry-internal/replay-canvas@8.15.0':
+    resolution: {integrity: sha512-gfezIuvf94wY748l5wSy4pRm+45GjiBm0Q/KLnXROLZKmbI7MTJrdQXA2Oxut848iISTQo4/LimecFnBDiaGtw==}
+    engines: {node: '>=14.18'}
+
+  '@sentry-internal/replay@8.15.0':
+    resolution: {integrity: sha512-d4cA8pjr0CGHkTe8ulqMROYCX3bMHBAi/7DJBr11i4MdNCUl+/pndA9C5TiFv0sFzk/hDZQZS3J+MfGp56ZQHw==}
+    engines: {node: '>=14.18'}
+
+  '@sentry/browser@8.15.0':
+    resolution: {integrity: sha512-Tx4eFgAqa8tedg30+Cgr7qFocWHise8p3jb/RSNs+TCEBXLVtQidHHVZMO71FWUAC86D7woo5hMKTt+UmB8pgg==}
+    engines: {node: '>=14.18'}
+
+  '@sentry/core@8.15.0':
+    resolution: {integrity: sha512-RjuEq/34VjNmxlfzq+485jG63/Vst90svQapLwVgBZWgM8jxrLyCRXHU0wfBc7/1IhV/T9GYAplrJQAkG4J9Ow==}
+    engines: {node: '>=14.18'}
+
+  '@sentry/types@8.15.0':
+    resolution: {integrity: sha512-AZc9nSHKuNH8P/7ihmq5fbZBiQ7Gr35kJq9Tad9eVuOgL8D+2b6Vqu/61ljVVlMFI0tBGFsSkWJ/00PfBcVKWg==}
+    engines: {node: '>=14.18'}
+
+  '@sentry/utils@8.15.0':
+    resolution: {integrity: sha512-1ISmyYFuRHJbGun0gUYscyz1aP6RfILUldNAUwQwF0Ycu8YOi4n8uwJRN0aov6cCi41tnZWOMBagSeLxbJiJgQ==}
+    engines: {node: '>=14.18'}
 
   '@sveltejs/vite-plugin-svelte-inspector@2.1.0':
     resolution: {integrity: sha512-9QX28IymvBlSCqsCll5t0kQVxipsfhFFL+L2t3nTWfXnddYwxBuAEtTtlaVQpRz9c37BhJjltSeY4AJSC03SSg==}
@@ -2652,9 +2700,9 @@ snapshots:
       - encoding
       - mocha
 
-  '@covector/assemble@0.12.0':
+  '@covector/assemble@0.12.0(mocha@10.5.2)':
     dependencies:
-      '@covector/command': 0.8.0
+      '@covector/command': 0.8.0(mocha@10.5.2)
       '@covector/files': 0.8.0
       effection: 2.0.8(mocha@10.5.2)
       js-yaml: 4.1.0
@@ -2665,9 +2713,10 @@ snapshots:
       unified: 9.2.2
     transitivePeerDependencies:
       - encoding
+      - mocha
       - supports-color
 
-  '@covector/changelog@0.12.0':
+  '@covector/changelog@0.12.0(mocha@10.5.2)':
     dependencies:
       '@covector/files': 0.8.0
       effection: 2.0.8(mocha@10.5.2)
@@ -2677,14 +2726,16 @@ snapshots:
       unified: 9.2.2
     transitivePeerDependencies:
       - encoding
+      - mocha
       - supports-color
 
-  '@covector/command@0.8.0':
+  '@covector/command@0.8.0(mocha@10.5.2)':
     dependencies:
-      '@effection/process': 2.1.4
+      '@effection/process': 2.1.4(mocha@10.5.2)
       effection: 2.0.8(mocha@10.5.2)
     transitivePeerDependencies:
       - encoding
+      - mocha
 
   '@covector/files@0.8.0':
     dependencies:
@@ -2731,10 +2782,8 @@ snapshots:
     dependencies:
       effection: 2.0.8(mocha@10.5.2)
       mocha: 10.5.2
-    transitivePeerDependencies:
-      - encoding
 
-  '@effection/process@2.1.4':
+  '@effection/process@2.1.4(mocha@10.5.2)':
     dependencies:
       cross-spawn: 7.0.3
       ctrlc-windows: 2.1.0
@@ -2742,6 +2791,7 @@ snapshots:
       shellwords: 0.1.1
     transitivePeerDependencies:
       - encoding
+      - mocha
 
   '@effection/stream@2.0.6':
     dependencies:
@@ -2999,6 +3049,53 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.18.0':
     optional: true
+
+  '@sentry-internal/browser-utils@8.15.0':
+    dependencies:
+      '@sentry/core': 8.15.0
+      '@sentry/types': 8.15.0
+      '@sentry/utils': 8.15.0
+
+  '@sentry-internal/feedback@8.15.0':
+    dependencies:
+      '@sentry/core': 8.15.0
+      '@sentry/types': 8.15.0
+      '@sentry/utils': 8.15.0
+
+  '@sentry-internal/replay-canvas@8.15.0':
+    dependencies:
+      '@sentry-internal/replay': 8.15.0
+      '@sentry/core': 8.15.0
+      '@sentry/types': 8.15.0
+      '@sentry/utils': 8.15.0
+
+  '@sentry-internal/replay@8.15.0':
+    dependencies:
+      '@sentry-internal/browser-utils': 8.15.0
+      '@sentry/core': 8.15.0
+      '@sentry/types': 8.15.0
+      '@sentry/utils': 8.15.0
+
+  '@sentry/browser@8.15.0':
+    dependencies:
+      '@sentry-internal/browser-utils': 8.15.0
+      '@sentry-internal/feedback': 8.15.0
+      '@sentry-internal/replay': 8.15.0
+      '@sentry-internal/replay-canvas': 8.15.0
+      '@sentry/core': 8.15.0
+      '@sentry/types': 8.15.0
+      '@sentry/utils': 8.15.0
+
+  '@sentry/core@8.15.0':
+    dependencies:
+      '@sentry/types': 8.15.0
+      '@sentry/utils': 8.15.0
+
+  '@sentry/types@8.15.0': {}
+
+  '@sentry/utils@8.15.0':
+    dependencies:
+      '@sentry/types': 8.15.0
 
   '@sveltejs/vite-plugin-svelte-inspector@2.1.0(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.3.2(terser@5.31.1)))(svelte@4.2.18)(vite@5.3.2(terser@5.31.1))':
     dependencies:
@@ -3501,9 +3598,9 @@ snapshots:
     dependencies:
       '@clack/prompts': 0.7.0
       '@covector/apply': 0.10.0(mocha@10.5.2)
-      '@covector/assemble': 0.12.0
-      '@covector/changelog': 0.12.0
-      '@covector/command': 0.8.0
+      '@covector/assemble': 0.12.0(mocha@10.5.2)
+      '@covector/changelog': 0.12.0(mocha@10.5.2)
+      '@covector/command': 0.8.0(mocha@10.5.2)
       '@covector/files': 0.8.0
       effection: 2.0.8(mocha@10.5.2)
       globby: 11.1.0
