@@ -6,3 +6,4 @@ dist
 .vscode
 .gradle
 **/capabilities/schemas
+.DS_Store
