@@ -69,11 +69,11 @@ async fn download(
     url: &str,
     file_path: &str,
     headers: HashMap<String, String>,
-    on_progress: Channel<ProgressPayload>,
     body: Option<String>,
+    on_progress: Channel<ProgressPayload>,
 ) -> Result<()> {
     let client = reqwest::Client::new();
-    if let Some(body) = body {
+    let mut request = if let Some(body) = body {
         client.post(url).body(body)
     } else {
         client.get(url)
@@ -210,7 +210,7 @@ mod tests {
                 let _ = msg;
                 Ok(())
             });
-        download(url, file_path, headers, sender).await
+        download(url, file_path, headers, None, sender).await
     }
 
     async fn spawn_server_mocked(return_status: usize) -> MockedServer {
