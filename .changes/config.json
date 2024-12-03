@@ -56,12 +56,13 @@
       "dependencies": [
         "barcode-scanner",
         "biometric",
-        "log-plugin",
+        "log",
         "cli",
         "clipboard-manager",
         "dialog",
         "fs",
         "global-shortcut",
+        "opener",
         "http",
         "nfc",
         "notification",
@@ -87,6 +88,7 @@
         "dialog-js",
         "fs-js",
         "global-shortcut-js",
+        "opener-js",
         "http-js",
         "nfc-js",
         "notification-js",
@@ -186,6 +188,14 @@
       "path": "./plugins/global-shortcut",
       "manager": "javascript"
     },
+    "opener": {
+      "path": "./plugins/opener",
+      "manager": "rust"
+    },
+    "opener-js": {
+      "path": "./plugins/opener",
+      "manager": "javascript"
+    },
     "haptics": {
       "path": "./plugins/haptics",
       "manager": "rust"
@@ -207,7 +217,7 @@
       "path": "./plugins/localhost",
       "manager": "rust"
     },
-    "log-plugin": {
+    "log": {
       "path": "./plugins/log",
       "manager": "rust"
     },
