@@ -70,11 +70,11 @@ async fn download(
     file_path: &str,
     headers: HashMap<String, String>,
     on_progress: Channel<ProgressPayload>,
-    body: String,
+    body: Option<String>,
 ) -> Result<()> {
     let client = reqwest::Client::new();
-    let mut request = if !body.is_empty() {
-        client.post(url).body(body.to_owned())
+    if let Some(body) = body {
+        client.post(url).body(body)
     } else {
         client.get(url)
     };
