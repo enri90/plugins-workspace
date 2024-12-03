@@ -63,7 +63,7 @@ async function download(
     filePath,
     headers: headers ?? {},
     onProgress,
-    body: body
+    body
   })
 }
 
